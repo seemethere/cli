@@ -15,5 +15,5 @@ for FILE in *.md; do
 		continue
 	fi
 	mkdir -p "$MANPAGE_TARGET/man${num}"
-	go-md2man -in "$FILE" -out "$MANPAGE_TARGET/man${num}/${name}"
+	$GOPATH/bin/go-md2man -in "$FILE" -out "$MANPAGE_TARGET/man${num}/${name}"
 done
