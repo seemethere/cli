@@ -40,4 +40,4 @@ vendor: vendor.conf
 
 manpages: ## Generate man pages from go source and markdown
 	go get github.com/cpuguy83/go-md2man
-	man/generate.sh
+	man/generate.sh ${MANPAGE_TARGET}

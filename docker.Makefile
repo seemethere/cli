@@ -55,4 +55,4 @@ vendor: build_docker_image vendor.conf
 	@docker run -ti --rm $(MOUNTS) $(DEV_DOCKER_IMAGE_NAME) make vendor
 
 manpages: build_docker_image
-	@docker run -ti --rm $(MOUNTS) $(DEV_DOCKER_IMAGE_NAME) make manpages
+	@docker run -ti --rm $(MOUNTS) $(DEV_DOCKER_IMAGE_NAME) make MANPAGE_TARGET=${MANPAGE_TARGET} manpages

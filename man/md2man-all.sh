@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+MANPAGE_TARGET=${1:-./man/man}
+
 # get into this script's directory
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
-
-[ "$1" = '-q' ] || {
-	set -x
-	pwd
-}
 
 for FILE in *.md; do
 	base="$(basename "$FILE")"
@@ -17,6 +14,6 @@ for FILE in *.md; do
 		# skip files that aren't of the format xxxx.N.md (like README.md)
 		continue
 	fi
-	mkdir -p "./man${num}"
-	go-md2man -in "$FILE" -out "./man${num}/${name}"
+	mkdir -p "$MANPAGE_TARGET/man${num}"
+	go-md2man -in "$FILE" -out "$MANPAGE_TARGET/man${num}/${name}"
 done
