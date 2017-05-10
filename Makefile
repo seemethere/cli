@@ -39,7 +39,5 @@ vendor: vendor.conf
 	fi;
 
 manpages: ## Generate man pages from go source and markdown
-	docker build --no-cache -t docker-manpage-dev -f "man/Dockerfile" ./man
-	docker run --rm \
-		-v $(PWD):/go/src/github.com/docker/cli/ \
-		docker-manpage-dev
+	go get github.com/cpuguy83/go-md2man
+	man/generate.sh
