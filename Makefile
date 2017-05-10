@@ -37,3 +37,9 @@ vendor: vendor.conf
 		echo; git status --porcelain -- vendor 2>/dev/null; \
 		echo; exit 1; \
 	fi;
+
+manpages: ## Generate man pages from go source and markdown
+	docker build --no-cache -t docker-manpage-dev -f "man/Dockerfile" ./man
+	docker run --rm \
+		-v $(PWD):/go/src/github.com/docker/cli/ \
+		docker-manpage-dev
