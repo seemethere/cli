@@ -1,0 +1,4 @@
+whitelist:
+  - gordontheturtle
+  - docker-jenkins
+approvals_needed: 1
