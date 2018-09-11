@@ -63,7 +63,11 @@ func (c baseClient) ActivateEngine(ctx context.Context, opts EngineInitOptions, 
 		if err != nil {
 			return err
 		}
-		opts.EngineVersion = currentOpts.EngineVersion
+		shortVersionBits := strings.Split(currentOpts.EngineVersion, ".")
+		if len(shortVersionBits) < 2 {
+			return fmt.Errorf("Engine version '%s' was not recognized, activate failed", currentOpts.EngineVersion)
+		}
+		opts.EngineVersion = strings.Join(shortVersionBits[:2], ".")
 		if currentOpts.EngineImage == EnterpriseEngineImage {
 			// This is a "no-op" activation so the only change would be the license - don't update the engine itself
 			return nil
